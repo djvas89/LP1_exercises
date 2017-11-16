@@ -11,14 +11,14 @@
 int M200 = 200;
 
 int main_pr06_ex2017(int argc, const char *argv[]) {
-    int *pi = NULL;
+    /*int *pi = NULL;
     int size = 10;
     pi = using_malloc_create_dynarray_ints(size);
     init_dynarray_ints_pow2(pi, size);
     print_dynarray_ints(pi, size);
     *pi = 18;
 
-    scanf("%d", pi);
+    scanf("%d", pi);*/
     return 0;
 }
 
@@ -28,13 +28,14 @@ void change_pointer_to_array(int **ppi, int *p) {
 
 float **create_matrix_floats(int n, int c) {
     float **ppf = NULL;
-    ppf = (float *) malloc(sizeof(float *) * n);
+    ppf = (float **) (float *) malloc(sizeof(float **) * n);
     for (int i = 0; i < n; ++i) {
         *(ppf + i) = (float *) malloc(sizeof(float) * c);
     }
     return ppf;
 }
 
+/**
 void create_or_resize_dynarray_floats(float **ppf, int *psize) {
     if (**ppf == NULL) {
         *psize = 5;
@@ -45,7 +46,7 @@ void create_or_resize_dynarray_floats(float **ppf, int *psize) {
         }
         return;
     }
-}
+}*/
 
 int *using_malloc_create_dynarray_ints(int n) {
     int *p = NULL;
@@ -70,7 +71,7 @@ void print_dynarray_ints(int *p, int n) {
 
     }
 }
-
+/*
 int *create_or_resize_dynarray_ints(int *p, int size, int newSize) {
     int *pnew = NULL;
     if (*p == NULL) {
@@ -84,8 +85,8 @@ int *create_or_resize_dynarray_ints(int *p, int size, int newSize) {
     }
     free(p);
     return pnew;
-}
-
+}*/
+/*
 char **read_array_dyn_strings(char *astr[], int size) {
     char saux[M200] = "";
     printf("Insira %d nomes : \n", size);
@@ -98,10 +99,9 @@ char **read_array_dyn_strings(char *astr[], int size) {
     }
     return astr;
 }
-
+*/
 void print_array_dyn_strings(char *astr[], int size) {
     for (int i = 0; i < size; ++i) {
         printf("astr[%d]=%d\n", i, astr[i]);
     }
 }
-
