@@ -85,6 +85,6 @@ char *create_copy_dyn_string(char str[]) {
     return t;
 }
 
-//char ** order_dynarray_strings(char *pps, int size
+//char ** order_dynarray_strings(char *pps, int size)
 
 //strcmp(*(pps+i),*(pps+j))<0 ou >0
