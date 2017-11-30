@@ -5,7 +5,7 @@
 #include "pr08_ex2017.h"
 
 int main_pr08_ex2017(int argc, const char *argv[]) {
-    struct point delta2 { 5, 5 };
+    struct point delta2 = { 5, 5};
     struct point p1 = {0, 0}, p2 = {0, 0};
     struct point *pp = &p1;
     int size = 0;
@@ -47,7 +47,7 @@ void translation_dyn_array_points(struct point *ppts, int size, struct point del
     struct point *paux = ppts;
     for (int i = 0; i < size; ++i) {
         (*paux).x += delta.x;
-        paux-> += delta.y;
+        paux->y += delta.y;
         paux++;
     }
 }
