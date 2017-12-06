@@ -8,7 +8,7 @@
 
 STUDENT *insert_student_head(CLASSSTUDENTS *pcs, char name[], int num, float nota) {
     STUDENT *ps = (STUDENT *) malloc(sizeof(STUDENT));
-    //ps->pname = create_copy_dyn_array(name);
+    ps->pname = create_copy_dyn_string(name);
     ps->number = num;
     ps->grade = nota;
     ps->pnext = pcs->pfirst;
@@ -138,4 +138,45 @@ RECTANGLE remove_dyn_array_rects(DYNARRAYRECTS dar, POINT ap[], int size) {
         pr++;
     }
     return r0;
+}
+
+void free_dyn_array_rects(DYNARRAYRECTS *pdar) {
+    free(pdar->prects);
+    pdar->prects = NULL;
+    pdar->size = 0;
+}
+
+void save_dyn_array_rects_txt(DYNARRAYRECTS dar, char filename[]) {
+    FILE *fp = NULL;
+    fp = fopen(filename, "w");
+    if (fp == NULL) {
+        fprintf(stdout, "Erro Abertura Ficheiro%s\n", filename);
+        return;
+    }
+    fprintf(fp, "List Rects\n %d\n", dar.size);
+    for (int i = 0; i < dar.size; ++i) {
+        fprintf(fp, "ID: %d %d %d %d %d\n", i, (dar.prects + i)->up.x, (dar.prects + i)->up.y,
+                (*(dar.prects + i)).down.x, (*(dar.prects + i)).down.y);
+    }
+}
+
+void read_dyn_array_rects_txt(DYNARRAYRECTS *pdar, char fn[]) {
+    FILE *fp = NULL;
+    RECTANGLE *paux = NULL;
+    char line[M200] = "", auxStr[M200] = "";
+    int size = 0, index;
+    if ((fp == fopen(fn, "r")) == NULL) {
+
+        return;
+    }
+
+    fgets(line, M200, fp);
+    fscanf(fp, "%d", &size);
+    create_dyn_array_rects(pdar, size);
+    paux = pdar->prects;
+    for (int i = 0; i < size; ++i) {
+        fscanf(fp, "%s %d %d %d %d %d", auxStr, &index, &(paux->up.x), &(paux->up.y), &((*paux).down.x),
+               &((*paux).down.y));
+        paux++;
+    }
 }

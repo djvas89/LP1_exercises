@@ -7,7 +7,9 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include "pr07_ex2017.h"
 
+#define M200 200
 #define M50 50
 typedef struct student {
     char *pname;
@@ -59,4 +61,7 @@ void print_rect(RECTANGLE r);
 
 RECTANGLE remove_dyn_array_rects(DYNARRAYRECTS dar, POINT ap[], int size);
 
+void free_dyn_array_rects(DYNARRAYRECTS *pdar);
+
+void save_dyn_array_rects_txt(DYNARRAYRECTS dar, char filename[]);
 #endif //LP1_PR09_EX2017_H
